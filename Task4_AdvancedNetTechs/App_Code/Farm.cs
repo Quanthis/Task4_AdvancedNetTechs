@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Opis podsumowujący dla Farm
-/// </summary>
 public class Farm
 {
     public const decimal cost = 0.9M;

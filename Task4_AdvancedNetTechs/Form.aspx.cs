@@ -14,6 +14,11 @@ public partial class Form : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Label1.Text = "Clicked!";
+        string sqlConnection = TextBox1.Text;
+        var makeSQLQuery = new SQLHandler(sqlConnection);
+
+        var farm = new Farm(makeSQLQuery.GetLastActionDate(), makeSQLQuery.GetMoney(), makeSQLQuery.GetActualProduction());
+
+
     }
 }
