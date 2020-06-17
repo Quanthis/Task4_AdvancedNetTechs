@@ -58,6 +58,21 @@ public class Farm
         }
     }
 
+    public int GetActualProduction()
+    {
+        return actualProduction;
+    }
+
+    public decimal GetMoney()
+    {
+        return money;
+    }
+
+    public DateTime GetLastActionDate()
+    {
+        return lastActionDate;
+    }
+
     private void UpdateDB()
     {
         //in progress
