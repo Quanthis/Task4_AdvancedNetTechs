@@ -18,7 +18,7 @@ public partial class Form : System.Web.UI.Page
         string sqlConnection = TextBox1.Text;
         var makeSQLQuery = new SQLHandler(sqlConnection);
 
-        var farm = new Farm(makeSQLQuery.GetLastActionDate(), makeSQLQuery.GetMoney(), makeSQLQuery.GetActualProduction());
+        var farm = new Farm(makeSQLQuery.GetLastActionDate(), makeSQLQuery.GetMoney(), makeSQLQuery.GetActualProduction(), makeSQLQuery);
 
         SewInfo.Text = farm.Sow(ToInt32(HowMuchToSew));        
     }
@@ -28,7 +28,7 @@ public partial class Form : System.Web.UI.Page
         string sqlConnection = TextBox1.Text;
         var makeSQLQuery = new SQLHandler(sqlConnection);
 
-        var farm = new Farm(makeSQLQuery.GetLastActionDate(), makeSQLQuery.GetMoney(), makeSQLQuery.GetActualProduction());
+        var farm = new Farm(makeSQLQuery.GetLastActionDate(), makeSQLQuery.GetMoney(), makeSQLQuery.GetActualProduction(), makeSQLQuery);
 
         CollectedInfo.Text += farm.Collect().ToString();
     }
@@ -38,7 +38,7 @@ public partial class Form : System.Web.UI.Page
         string sqlConnection = TextBox1.Text;
         var makeSQLQuery = new SQLHandler(sqlConnection);
 
-        var farm = new Farm(makeSQLQuery.GetLastActionDate(), makeSQLQuery.GetMoney(), makeSQLQuery.GetActualProduction());
+        var farm = new Farm(makeSQLQuery.GetLastActionDate(), makeSQLQuery.GetMoney(), makeSQLQuery.GetActualProduction(), makeSQLQuery);
 
         CollectedInfo.Text += farm.GetActualProduction() + " " + farm.GetLastActionDate() + " " + farm.GetMoney();
     }

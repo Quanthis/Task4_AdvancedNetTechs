@@ -13,12 +13,15 @@ public class Farm
     private decimal money;
     private int actualProduction;
 
+    private SQLHandler sqlHandler;
 
-    public Farm(DateTime lastActionDate, decimal money, int actualProduction)
+
+    public Farm(DateTime lastActionDate, decimal money, int actualProduction, SQLHandler sqlHandler)
     {
         this.lastActionDate = lastActionDate;
         this.money = money;
         this.actualProduction = actualProduction;
+        this.sqlHandler = sqlHandler;
     }
 
     public string Sow(int howMany)
@@ -28,14 +31,17 @@ public class Farm
             actualProduction += howMany;
             decimal totalCost = cost * howMany;
             money -= totalCost;
+            sqlHandler.Update_DB(howMany);
+
             return $"You have sown {howMany} fields. Cost of action: {totalCost}. You now have {money} money.";
         }
         else
         {
             int possibleToSow = limit - actualProduction;
             decimal totalCost = possibleToSow * cost;
-
             money -= totalCost;
+            sqlHandler.Update_DB(howMany);
+
             return $"You tried to exceed maximum limit. Amount that was sown: {possibleToSow}. Actual cost: {totalCost}. Your money after action: {money}.";
         }
     }
@@ -50,10 +56,12 @@ public class Farm
 
         if(totalGrown > limit)
         {
+            sqlHandler.Update_DB((int)limit);
             return limit;
         }
         else
         {
+            sqlHandler.Update_DB((int)totalGrown);
             return totalGrown;
         }
     }
@@ -71,10 +79,5 @@ public class Farm
     public DateTime GetLastActionDate()
     {
         return lastActionDate;
-    }
-
-    private void UpdateDB()
-    {
-        //in progress
     }
 }
